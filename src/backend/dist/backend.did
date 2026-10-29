@@ -1,0 +1,130 @@
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type Timestamp = int;
+type Session = 
+ record {
+   expiresAt: Timestamp;
+   token: text;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type PurchaseId = nat;
+type Purchase = 
+ record {
+   customerId: CustomerId;
+   id: PurchaseId;
+   productName: text;
+   purchasedAt: Timestamp;
+   quantity: nat;
+   theme: text;
+   totalCents: nat;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type CustomerProfile = 
+ record {
+   createdAt: Timestamp;
+   displayName: text;
+   email: text;
+   id: CustomerId;
+ };
+type CustomerId = nat;
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+type AuthError = 
+ variant {
+   accountLocked: record {until: Timestamp;};
+   duplicateEmail;
+   invalidCredentials;
+   invalidEmail;
+   notAuthenticated;
+   weakPassword;
+ };
+service : {
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  execute: (qJson: text) -> (Result) query;
+  /// Static Markdown documentation of the DayShop backend API.
+  getApiDoc: () -> (text) query;
+  getCallerUserRole: () -> (UserRole) query;
+  /// Read the signed-in customer's own profile.
+  /// 
+  /// An update (not a query) because resolving the token refreshes the
+  /// session expiry, and a query's writes are discarded.
+  getMyProfile: (token: text) ->
+   (variant {
+      err: AuthError;
+      ok: CustomerProfile;
+    });
+  /// List the signed-in customer's own purchase history.
+  /// 
+  /// An update (not a query) because resolving the token refreshes the
+  /// session expiry, and a query's writes are discarded.
+  getMyPurchases: (token: text) ->
+   (variant {
+      err: AuthError;
+      ok: vec Purchase;
+    });
+  isCallerAdmin: () -> (bool) query;
+  /// Register a new customer account.
+  registerCustomer: (email: text, password: text, displayName: text) ->
+   (variant {
+      err: AuthError;
+      ok: CustomerProfile;
+    });
+  schema: () -> (text) query;
+  /// Sign in with email and password, returning a session token.
+  signIn: (email: text, password: text) ->
+   (variant {
+      err: AuthError;
+      ok: Session;
+    });
+  /// Sign out and invalidate the session token.
+  signOut: (token: text) -> ();
+}

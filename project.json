@@ -1,0 +1,25 @@
+{
+  "overview": "DayShop es una tienda web temática LEGO con secciones de Ninjago, Star Wars, Chima, Scooby-Doo y Variado, con registro de cliente e inicio de sesión por correo y contraseña.",
+  "features": [
+    "Página de inicio con secciones temáticas LEGO: Ninjago, Star Wars, Chima, Scooby-Doo y Variado",
+    "Cuadrícula de productos con imagen, nombre y precio en cada sección",
+    "Página de detalle de producto con imagen grande, precio y descripción",
+    "Registro de cliente con correo y contraseña",
+    "Inicio de sesión con correo y contraseña, contraseña oculta con opción de mostrar u ocultar",
+    "Validación de correo y contraseña de al menos 12 caracteres",
+    "Mensaje de error genérico que no revela si el correo existe",
+    "Bloqueo temporal de la cuenta por 15 minutos tras 5 intentos fallidos",
+    "Página Mi cuenta / Mis compras protegida, con historial de compras y cierre de sesión"
+  ],
+  "category": "e-commerce",
+  "tags": [
+    "lego",
+    "tienda",
+    "ninjago",
+    "star-wars",
+    "chima",
+    "scooby-doo",
+    "autenticacion"
+  ],
+  "last_updated": "2026-10-22T14:29:27.543Z"
+}

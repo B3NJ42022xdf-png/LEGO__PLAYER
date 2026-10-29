@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Nunito";
+  src: url("/assets/fonts/Nunito.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 200 1000;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 200 800;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 900;
+}
+
+@layer base {
+  :root {
+    --font-display: "Nunito";
+    --font-body: "Plus Jakarta Sans";
+    --font-mono: "Geist Mono";
+    --radius: 0.875rem;
+
+    /* DayShop — bright toy-store light theme */
+    --background: 0.975 0.012 85;
+    --foreground: 0.22 0.035 40;
+    --card: 1.0 0 0;
+    --card-foreground: 0.22 0.035 40;
+    --popover: 1.0 0 0;
+    --popover-foreground: 0.22 0.035 40;
+
+    /* LEGO brick red */
+    --primary: 0.56 0.225 27;
+    --primary-foreground: 0.99 0.008 90;
+
+    --secondary: 0.94 0.03 85;
+    --secondary-foreground: 0.3 0.04 45;
+    --muted: 0.945 0.018 85;
+    --muted-foreground: 0.5 0.03 50;
+
+    /* Brick-yellow gold accent */
+    --accent: 0.82 0.165 88;
+    --accent-foreground: 0.24 0.05 60;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.99 0.008 90;
+
+    --success: 0.62 0.17 150;
+    --success-foreground: 0.99 0.008 150;
+    --warning: 0.78 0.15 80;
+    --warning-foreground: 0.26 0.05 60;
+
+    --border: 0.9 0.018 85;
+    --input: 0.9 0.018 85;
+    --ring: 0.56 0.225 27;
+
+    /* Theme identity colors */
+    --theme-ninjago: 0.5 0.2 25;
+    --theme-starwars: 0.32 0.09 255;
+    --theme-chima: 0.62 0.19 145;
+    --theme-scooby: 0.5 0.2 305;
+    --theme-variado: 0.68 0.16 200;
+
+    --chart-1: 0.56 0.225 27;
+    --chart-2: 0.82 0.165 88;
+    --chart-3: 0.62 0.19 145;
+    --chart-4: 0.5 0.2 305;
+    --chart-5: 0.68 0.16 200;
+
+    --sidebar: 0.99 0.01 85;
+    --sidebar-foreground: 0.22 0.035 40;
+    --sidebar-primary: 0.56 0.225 27;
+    --sidebar-primary-foreground: 0.99 0.008 90;
+    --sidebar-accent: 0.94 0.03 85;
+    --sidebar-accent-foreground: 0.3 0.04 45;
+    --sidebar-border: 0.9 0.018 85;
+    --sidebar-ring: 0.56 0.225 27;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.6 0.23 30),
+      oklch(0.52 0.21 20)
+    );
+    --gradient-hero: linear-gradient(
+      135deg,
+      oklch(0.97 0.03 90),
+      oklch(0.94 0.05 200)
+    );
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 0.16 0.02 45;
+    --foreground: 0.95 0.01 85;
+    --card: 0.2 0.022 45;
+    --card-foreground: 0.95 0.01 85;
+    --popover: 0.2 0.022 45;
+    --popover-foreground: 0.95 0.01 85;
+
+    --primary: 0.66 0.21 30;
+    --primary-foreground: 0.16 0.02 45;
+
+    --secondary: 0.25 0.025 45;
+    --secondary-foreground: 0.86 0.015 85;
+    --muted: 0.25 0.025 45;
+    --muted-foreground: 0.6 0.02 60;
+
+    --accent: 0.82 0.16 88;
+    --accent-foreground: 0.18 0.03 60;
+
+    --destructive: 0.62 0.2 25;
+    --destructive-foreground: 0.16 0.02 45;
+
+    --success: 0.68 0.16 150;
+    --success-foreground: 0.16 0.02 150;
+    --warning: 0.8 0.15 82;
+    --warning-foreground: 0.18 0.03 60;
+
+    --border: 0.3 0.025 45;
+    --input: 0.3 0.025 45;
+    --ring: 0.66 0.21 30;
+
+    --theme-ninjago: 0.6 0.2 25;
+    --theme-starwars: 0.55 0.12 255;
+    --theme-chima: 0.7 0.18 145;
+    --theme-scooby: 0.62 0.19 305;
+    --theme-variado: 0.72 0.15 200;
+
+    --chart-1: 0.66 0.21 30;
+    --chart-2: 0.82 0.16 88;
+    --chart-3: 0.7 0.18 145;
+    --chart-4: 0.62 0.19 305;
+    --chart-5: 0.72 0.15 200;
+
+    --sidebar: 0.2 0.022 45;
+    --sidebar-foreground: 0.95 0.01 85;
+    --sidebar-primary: 0.66 0.21 30;
+    --sidebar-primary-foreground: 0.16 0.02 45;
+    --sidebar-accent: 0.25 0.025 45;
+    --sidebar-accent-foreground: 0.86 0.015 85;
+    --sidebar-border: 0.3 0.025 45;
+    --sidebar-ring: 0.66 0.21 30;
+
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.68 0.21 32),
+      oklch(0.58 0.2 22)
+    );
+    --gradient-hero: linear-gradient(
+      135deg,
+      oklch(0.2 0.03 45),
+      oklch(0.24 0.04 220)
+    );
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .bg-gradient-hero {
+    background-image: var(--gradient-hero);
+  }
+  /* Signature: LEGO stud texture */
+  .brick-studs {
+    background-image: radial-gradient(
+      circle at center,
+      oklch(var(--foreground) / 0.06) 0.28rem,
+      transparent 0.3rem
+    );
+    background-size: 1.5rem 1.5rem;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
